@@ -4,11 +4,12 @@ import (
 	"encoding/json"
 	"log/slog"
 	"net/http"
+	"thiagodotjpeg/pulse/internal/monitor/service"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-func NewRouter(logger *slog.Logger, pool *pgxpool.Pool) http.Handler {
+func NewRouter(logger *slog.Logger, pool *pgxpool.Pool, service.MonitorService) http.Handler {
 	router := http.NewServeMux()
 
 	router.HandleFunc("GET /hello", func(w http.ResponseWriter, r *http.Request)  {
@@ -34,6 +35,12 @@ func NewRouter(logger *slog.Logger, pool *pgxpool.Pool) http.Handler {
 		
 		w.WriteHeader(http.StatusOK)
 		w.Write(append(payload, '\n'))
+		logger.Info("Request closed")
+	})
+	
+	router.HandleFunc("POST /url", func(w http.ResponseWriter, r *http.Request) {
+		logger.Info("Request received")
+
 		logger.Info("Request closed")
 	})
 
