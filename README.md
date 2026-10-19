@@ -8,7 +8,7 @@ O Pulse nasceu como um projeto de monitoramento de URLs, tipo o UPTIME KUMA, min
 
 ## Funcionalidades
 
-- Monitoramento de status de URLs (HTTP 200)
+- Monitoramento de status de URLs 
 
 ## Como rodar localmente
 
